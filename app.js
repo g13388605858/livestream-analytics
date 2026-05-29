@@ -1,6 +1,7 @@
 const STORAGE_KEY = "livestreamAnalytics.records.v2";
 const SYNC_CONFIG_KEY = "livestreamAnalytics.jsonbin.config.v1";
 const JSONBIN_API = "https://api.jsonbin.io/v3";
+const DEFAULT_JSONBIN_BIN_ID = "6a199e3bddf5aa59f774a141";
 
 const state = {
   nav: "总览",
@@ -177,11 +178,11 @@ function loadSyncConfig() {
     const config = JSON.parse(localStorage.getItem(SYNC_CONFIG_KEY) || "{}");
     return {
       apiKey: config.apiKey || "",
-      binId: config.binId || "",
+      binId: config.binId || DEFAULT_JSONBIN_BIN_ID,
       keyHeader: config.keyHeader || "X-Master-Key",
     };
   } catch {
-    return { apiKey: "", binId: "", keyHeader: "X-Master-Key" };
+    return { apiKey: "", binId: DEFAULT_JSONBIN_BIN_ID, keyHeader: "X-Master-Key" };
   }
 }
 
